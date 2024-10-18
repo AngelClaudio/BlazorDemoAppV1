@@ -405,3 +405,6 @@ FodyWeavers.xsd
 # End
 /Components/Components.Client/bin
 /Components/Components.Client/bin
+/Components/Components.Client/bin
+/Components/Components.Client/bin/Debug
+/Components/Components.Client/bin/Debug/net8.0
