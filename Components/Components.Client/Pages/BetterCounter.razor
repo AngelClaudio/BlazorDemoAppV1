@@ -1,18 +1,27 @@
-﻿<PageTitle>Better Counter</PageTitle>
+﻿@* @page "/BetterCounter/{Title?}" *@
+@page "/BetterCounter/{StartingValue:int}"
 @rendermode InteractiveAuto
 @inject IJSRuntime JS
 
-<h1>Better Counter</h1>
+<h1>@Title</h1>
 
-<p role="status" style="font-size: 26px">Current count: @currentCount</p>
+<p role="status" style="font-size: 26px">Current count: @StartingValue</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
+    [Parameter]
+    public string? Title { get; set; }
+
+    [Parameter]
+    public int? StartingValue { get; set; }
+
     private int currentCount = 0;
- 
+
+    protected override void OnParametersSet() => Title = Title ?? "Our Better Counter";
+
     private void IncrementCount()
     {
-        currentCount++;
+        StartingValue++;
     }
 }
