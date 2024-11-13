@@ -1,7 +1,6 @@
 ﻿@page "/counter"
 @rendermode InteractiveAuto
 @inject IJSRuntime JS
-@inject NavigationManager Navigation
 
 <PageTitle>Counter</PageTitle>
 
@@ -11,7 +10,6 @@
 <p role="status">Current count: @currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-<button class="btn btn-primary" @onclick="GoToBetterCounter">Go to Better Counter</button>
 
 @code {
     private int currentCount = 0;
@@ -22,13 +20,10 @@
     {
         jsModule = await JS.InvokeAsync<IJSObjectReference>("import", "./Pages/Counter.razor.js");
     }
-
     private async Task IncrementCount()
     {
         currentCount++;
         await jsModule.InvokeVoidAsync("displayCount", currentCount);
         subMessage = await jsModule.InvokeAsync<string>("createMessage", currentCount);
     }
-
-    private void GoToBetterCounter() => Navigation.NavigateTo("/BetterCounter?val=35");
 }
