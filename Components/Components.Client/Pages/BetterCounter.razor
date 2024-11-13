@@ -1,18 +1,35 @@
-﻿<PageTitle>Better Counter</PageTitle>
+﻿@* @page "/BetterCounter/{Title?}" *@
+@* @page "/BetterCounter/{StartingValue:int}" *@
+@* @page "/BetterCounter/all/{*PageRoute}" *@
+@page "/BetterCounter"
 @rendermode InteractiveAuto
 @inject IJSRuntime JS
 
-<h1>Better Counter</h1>
-
-<p role="status" style="font-size: 26px">Current count: @currentCount</p>
+<h1>@Title</h1>
+@* <h2>@PageRoute</h2> *@
+<p role="status" style="font-size: 26px">Current count: @StartingValue</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
+    // [Parameter]
+    [SupplyParameterFromQuery(Name = "Title")]
+    public string? Title { get; set; }
+
+    // [Parameter]
+    [SupplyParameterFromQuery(Name = "val")]
+    public int StartingValue { get; set; }
+
+    // [Parameter]
+    // public string? PageRoute { get; set; }
+
     private int currentCount = 0;
- 
+
+    protected override void OnParametersSet() => Title = Title ?? "Our Better Counter";
+
     private void IncrementCount()
     {
-        currentCount++;
+        StartingValue++;     
     }
 }
+ 
