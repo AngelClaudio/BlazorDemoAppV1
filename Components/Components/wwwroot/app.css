@@ -20,6 +20,10 @@ a, .btn-link {
     padding-top: 1.1rem;
 }
 
+.counter-status {
+    font-size: 26px;
+}
+
 h1:focus {
     outline: none;
 }

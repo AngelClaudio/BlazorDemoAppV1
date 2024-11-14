@@ -1,18 +1,18 @@
 ﻿<PageTitle>Better Counter</PageTitle>
 @rendermode InteractiveAuto
-@inject IJSRuntime JS
+@inject IJSRuntime Js
 
 <h1>Better Counter</h1>
 
-<p role="status" style="font-size: 26px">Current count: @currentCount</p>
+<p role="status" class="counter-status">Current count: @_currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
-    private int currentCount = 0;
+    private int _currentCount = 0;
  
     private void IncrementCount()
     {
-        currentCount++;
+        _currentCount++;
     }
 }
